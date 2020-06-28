@@ -1,6 +1,7 @@
 # TextThoughts
+### The Unstructured Journaling App
 
-<img href="/android-chrome-512x512.png">
+<img href="https://raw.githubusercontent.com/davidpwu/textthoughts/master/public/android-chrome-512x512.png">
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
