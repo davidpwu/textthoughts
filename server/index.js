@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 
 // MongoDB Setup
 const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-hj9sw.mongodb.net/${process.env.DB_DB}?retryWrites=true&w=majority`;
-
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -19,29 +18,25 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connecting to MongoDB", err);
 });
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = process.env.PORT || 8080;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const nextApp = next({dev});
+const handle = nextApp.getRequestHandler();
+const serverName = dev ? `http://localhost:${PORT}` : "https://textthoughts.com";
 
-app.prepare().then(() => {
-  const server = express();
-  server.use(bodyParser.urlencoded({extended: true}));
-  server.use(bodyParser.json());
+nextApp.prepare().then(() => {
+  const app = express();
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
 
-  // server.get("/about", (req, res) => {
-  //   return app.render(req, res, "/about", req.query)
-  // });
-
-  server.get("/hobo", (req, res) => {
-    res.send({"what": "the"});
+  // Routes
+  app.get("/about", (req, res) => app.render(req, res, "/about", req.query));
+  app.get("/hobo", (req, res) => { 
+    res.send({good: "stuff"}) 
   });
-
-  server.all("*", (req, res) => {
-    return handle(req, res)
-  });
-
-  server.listen(PORT, (err) => {
+  app.all("*", (req, res) => handle(req, res));
+  
+  app.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`Server started on http://localhost:${PORT}`);
   });

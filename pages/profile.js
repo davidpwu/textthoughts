@@ -3,16 +3,18 @@ import Header from "../components/header/header";
 
 import Link from "next/link";
 
-import {Button} from "semantic-ui-react";
+import {Button, Container} from "semantic-ui-react";
 
 const Profile = () => (
   <>
     <AppHead />
     <Header />
-    <Link href="/"><Button>Return Home</Button></Link>
+    <Container>
+      <Link href="/"><Button>Return Home</Button></Link>
 
-    <h1>Welcome to the Profile page</h1>
-    <h2>Allow exporting data and what not here.</h2>
+      <h1>Welcome to the Profile page</h1>
+      <h2>Allow exporting data and what not here.</h2>
+    </Container>
   </>
 )
 

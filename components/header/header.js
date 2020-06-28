@@ -2,7 +2,7 @@ import Link from "next/link";
 import {Menu, Input} from "semantic-ui-react";
 
 const Header = () => (
-  <Menu secondary stackable>
+  <Menu secondary>
     <Link href="/">
       <Menu.Item>
         <img src="/android-chrome-192x192.png" />
@@ -11,9 +11,6 @@ const Header = () => (
     <Link href="/about"><Menu.Item name="about"/></Link>
 
     <Menu.Menu position="right">
-      <Menu.Item>
-        <Input icon="search" placeholder="Search..." />
-      </Menu.Item>
       <Link href="/profile"><Menu.Item name="profile"/></Link>
       <Link href="/signin"><Menu.Item name="sign in"/></Link>
     </Menu.Menu>
