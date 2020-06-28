@@ -1,9 +1,13 @@
+import AppHead from "../components/app-head/app-head";
 import Header from "../components/header/header";
+
 import Link from "next/link";
+
 import {Button, Checkbox, Form} from "semantic-ui-react";
 
 const SignIn = () => (
-  <div>
+  <>
+    <AppHead />
     <Header />
     <Link href="/"><Button>Return Home</Button></Link>
 
@@ -38,8 +42,7 @@ const SignIn = () => (
       </Form.Field>
       <Button type='submit'>Submit</Button>
     </Form>
-
-  </div>
+  </>
 )
 
 export default SignIn;

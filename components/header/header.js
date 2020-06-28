@@ -1,10 +1,23 @@
-import Head from "next/head";
+import Link from "next/link";
+import {Menu, Input} from "semantic-ui-react";
 
 const Header = () => (
-  <Head>
-    <title>TextThoughts</title>
-    <link rel="icon" href="/favicon.ico" />
-  </Head>
+  <Menu secondary stackable>
+    <Link href="/">
+      <Menu.Item>
+        <img src="/android-chrome-192x192.png" />
+      </Menu.Item>
+    </Link>
+    <Link href="/about"><Menu.Item name="about"/></Link>
+
+    <Menu.Menu position="right">
+      <Menu.Item>
+        <Input icon="search" placeholder="Search..." />
+      </Menu.Item>
+      <Link href="/profile"><Menu.Item name="profile"/></Link>
+      <Link href="/signin"><Menu.Item name="sign in"/></Link>
+    </Menu.Menu>
+  </Menu>
 )
 
 export default Header;
