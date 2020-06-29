@@ -18,7 +18,7 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connecting to MongoDB", err);
 });
 
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({dev});
 const handle = nextApp.getRequestHandler();
@@ -35,9 +35,9 @@ nextApp.prepare().then(() => {
     res.send({good: "stuff"}) 
   });
   app.all("*", (req, res) => handle(req, res));
-  
-  app.listen(PORT, (err) => {
+
+  app.listen(port, (err) => {
     if (err) throw err;
-    console.log(`Server started on http://localhost:${PORT}`);
+    console.log(`Server started on http://localhost:${port}`);
   });
 })
