@@ -1,7 +1,7 @@
 import AppHead from "../components/app-head/app-head"
 import Navigation from "../components/navigation/navigation";
 const dev = process.env.NODE_ENV !== "production";
-const serverName = dev ? `http://localhost:8080` : "https://textthoughts.com";
+const serverName = dev ? `http://localhost:8080` : "https://textthoughts.herokuapp.com";
 
 import Link from "next/link";
 
