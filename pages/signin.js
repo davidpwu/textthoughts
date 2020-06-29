@@ -1,5 +1,5 @@
 import AppHead from "../components/app-head/app-head";
-import Header from "../components/header/header";
+import Navigation from "../components/navigation/navigation";
 
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ import {Button, Checkbox, Form, Container} from "semantic-ui-react";
 const SignIn = () => (
   <>
     <AppHead />
-    <Header />
+    <Navigation />
     <Container>
       <Link href="/"><Button>Return Home</Button></Link>
 

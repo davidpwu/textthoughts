@@ -1,5 +1,5 @@
 import AppHead from "../components/app-head/app-head";
-import Header from "../components/header/header";
+import Navigation from "../components/navigation/navigation";
 import Message from "../components/message/message";
 
 import Link from "next/link";
@@ -10,10 +10,10 @@ const Home = ({stars}) => {
   return (
     <>
       <AppHead />
-      <Header />
+      <Navigation />
       <Container style={{display: "flex", flexDirection: "column", height: 500, alignContent: "center"}}>
         <div>
-          <h1 className="title">
+          <h1 className="title" style={{display: "flex", alignContent: "center"}}>
             <img 
               src="/android-chrome-192x192.png" 
               alt="TextThoughts Logo" 
@@ -29,7 +29,9 @@ const Home = ({stars}) => {
 
         <p>{stars}</p>
 
-        <Message />
+        <Message text={"I'm an example message"} sentDate={new Date()} />
+        <Message text={"I'm an example message"} sentDate={new Date()} />
+        <Message text={"I'm an example message"} sentDate={new Date()} />
 
         <Input 
           fluid 

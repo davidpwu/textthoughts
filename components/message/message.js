@@ -1,8 +1,8 @@
 import styles from "./message.module.scss";
 
-const Message = () => (
+const Message = ({text, sentDate}) => (
   <>
-    <h1 className={styles.message}>I am a message</h1>
+    <p className={styles.message}>{text} - Sent {sentDate.toString()}</p>
   </>
 )
 

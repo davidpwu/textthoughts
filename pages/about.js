@@ -1,5 +1,5 @@
 import AppHead from "../components/app-head/app-head"
-import Header from "../components/header/header";
+import Navigation from "../components/navigation/navigation";
 const dev = process.env.NODE_ENV !== "production";
 const serverName = dev ? `http://localhost:8080` : "https://textthoughts.com";
 
@@ -11,12 +11,12 @@ const About = ({stars}) => {
   return (
   <>
     <AppHead />
-    <Header />
+    <Navigation />
     <Container>
       <Link href="/"><Button>Return Home</Button></Link>
       
-      <h1>Welcome to the About page.</h1>
-      <h2>Describe the app here.</h2>
+      <h1>What is TextThoughts - The unstructured journaling app?</h1>
+      <p>TextThoughts is the unstructured journaling app.</p>
 
       {stars.good}
 

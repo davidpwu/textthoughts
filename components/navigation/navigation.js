@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {Menu, Input} from "semantic-ui-react";
 
-const Header = () => (
+const Navigation = () => (
   <Menu secondary>
     <Link href="/">
       <Menu.Item>
@@ -17,4 +17,4 @@ const Header = () => (
   </Menu>
 )
 
-export default Header;
+export default Navigation;
