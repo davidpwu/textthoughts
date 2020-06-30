@@ -1,8 +1,8 @@
 import React from "react";
 
-const Message = ({text, sentDate}) => (
+const Message = ({text, createdAt}) => (
   <>
-    <p>{text} - Sent {sentDate.toString()}</p>
+    <p>{text} - Sent {createdAt?.toString()}</p>
   </>
 )
 

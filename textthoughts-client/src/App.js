@@ -36,11 +36,7 @@ class App extends React.Component {
               )
             )}
           />
-          <Route exact path="/about" 
-            render={() => (
-              <AboutPage />
-            )}
-          />
+          <Route exact path="/about" component={AboutPage} />
           <Route exact path="/profile" 
             render={() => (
               this.state.signedIn ? (
