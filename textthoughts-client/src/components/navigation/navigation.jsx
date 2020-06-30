@@ -5,7 +5,7 @@ import {Menu} from "semantic-ui-react";
 const Navigation = () => (
   <Menu secondary>
     <Menu.Item>
-      <img src="/android-chrome-192x192.png" />
+      <img src="/android-chrome-192x192.png" alt="Logo" />
     </Menu.Item>
     <Menu.Item name="about"/>
     <Menu.Menu position="right">

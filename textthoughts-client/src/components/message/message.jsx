@@ -1,8 +1,8 @@
-import styles from "./message.module.scss";
+import React from "react";
 
 const Message = ({text, sentDate}) => (
   <>
-    <p className={styles.message}>{text} - Sent {sentDate.toString()}</p>
+    <p>{text} - Sent {sentDate.toString()}</p>
   </>
 )
 

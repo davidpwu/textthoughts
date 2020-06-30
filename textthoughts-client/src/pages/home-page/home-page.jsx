@@ -1,45 +1,37 @@
 import React from "react";
 
-import Message from "../components/message/message";
+import Message from "../..//components/message/message";
 
-import {Button, Container, Input} from "semantic-ui-react";
+import {Container, Input} from "semantic-ui-react";
 
-const HomePage = ({stars}) => {
-  return (
-    <>
-      <AppHead />
-      <Navigation />
-      <Container style={{display: "flex", flexDirection: "column", height: 500, alignContent: "center"}}>
-        <div>
-          <h1 className="title" style={{display: "flex", alignContent: "center"}}>
-            <img 
-              src="/android-chrome-192x192.png" 
-              alt="TextThoughts Logo" 
-              className="logo" 
-              style={{height: "2em"}} 
-            />
-            TextThoughts
-          </h1>
-          <p className="description">
-            The Unstructured Journaling App
-          </p>
-        </div>
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      hello: "world"
+    };
+  }
 
-        <p>{stars}</p>
+  render() {
+    return (
+      <>
+        <Container style={{display: "flex", flexDirection: "column", height: 500, alignContent: "center"}}>
+          <p>{this.props.stars}</p>
 
-        <Message text={"I'm an example message"} sentDate={new Date()} />
-        <Message text={"I'm an example message"} sentDate={new Date()} />
-        <Message text={"I'm an example message"} sentDate={new Date()} />
+          <Message text={"I'm an example message"} sentDate={new Date()} />
+          <Message text={"I'm an example message"} sentDate={new Date()} />
+          <Message text={"I'm an example message"} sentDate={new Date()} />
 
-        <Input 
-          fluid 
-          icon="search" 
-          placeholder="Search..." 
-          // style={{alignSelf: "flex-end"}} 
-        />
-      </Container>
-    </>
-  )
+          <Input 
+            fluid 
+            icon="search" 
+            // style={{alignSelf: "flex-end"}} 
+          />
+        </Container>
+      </>
+    );
+  }
 }
 
 // Home.getInitialProps = async (ctx) => {
