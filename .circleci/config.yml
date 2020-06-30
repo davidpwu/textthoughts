@@ -15,4 +15,4 @@ jobs:
 workflows:
     build-and-test-client:
       jobs:
-        - build-and-test
+        - build-and-test-client
