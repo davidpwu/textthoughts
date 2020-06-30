@@ -1,3 +1,11 @@
+# TextThoughts
+
+## Details
+
+<img src="https://raw.githubusercontent.com/davidpwu/textthoughts/master/textthoughts-client/public/android-chrome-512x512.png" alt="" width="400"/>
+
+The unstructured journaling app.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
