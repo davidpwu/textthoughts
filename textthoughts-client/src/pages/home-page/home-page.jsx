@@ -17,27 +17,25 @@ class HomePage extends React.Component {
     return (
       <>
         <Container style={{display: "flex", flexDirection: "column", height: 500, alignContent: "center"}}>
-          <p>{this.props.stars}</p>
+          {
+            this.props.signedIn ?
+            <div>
+              <Message text={"I'm an example message"} sentDate={new Date()} />
+              <Message text={"I'm an example message"} sentDate={new Date()} />
+              <Message text={"I'm an example message"} sentDate={new Date()} />
 
-          <Message text={"I'm an example message"} sentDate={new Date()} />
-          <Message text={"I'm an example message"} sentDate={new Date()} />
-          <Message text={"I'm an example message"} sentDate={new Date()} />
-
-          <Input 
-            fluid 
-            icon="search" 
-            // style={{alignSelf: "flex-end"}} 
-          />
+              <Input 
+                fluid 
+                icon="search" 
+              />
+            </div>
+            :
+            <p>Sign the heck in</p>
+          }
         </Container>
       </>
     );
   }
 }
-
-// Home.getInitialProps = async (ctx) => {
-//   const res = await fetch("https://api.github.com/repos/vercel/next.js");
-//   const json = await res.json();    
-//   return {stars: json.stargazers_count};
-// }
 
 export default HomePage;
