@@ -24,9 +24,22 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// Routes
-app.get("/hobo", (req, res) => { 
-  res.send({good: "stuff"}) 
+// Priority serve any static files
+app.use(express.static(path.resolve(__dirname, "../textthoughts-ui/build")));
+
+// Answer API requests
+// app.get("/api", function (req, res) {
+//   res.set("Content-Type", "application/json");
+//   res.send('{"message":"Hello from the custom server!"}');
+// });
+
+// app.get("/hobo", (req, res) => { 
+//   res.send({good: "stuff"}) 
+// });
+
+// All remaining requests return the React app, so it can handle routing
+app.get("*", function(req, res) {
+  res.sendFile(path.resolve(__dirname, "../textthoughts-ui/build", "index.html"));
 });
 
 app.listen(port, (err) => {
