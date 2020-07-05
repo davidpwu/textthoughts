@@ -22,6 +22,10 @@ class App extends React.Component {
     this.setState({signedIn: false});
   }
 
+  signIn = () => {
+    this.setState({signedIn: true});
+  }
+
   render() {
     return (
       <>

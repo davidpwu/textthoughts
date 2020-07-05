@@ -1,10 +1,19 @@
 import React from "react";
 
 import {Link} from "react-router-dom";
-import {Menu} from "semantic-ui-react";
+import {Menu, Icon} from "semantic-ui-react";
 
 const Navigation = ({signedIn, signOut}) => (
-  <Menu secondary style={{display: "flex", alignItems: "center"}}>
+  <Menu secondary style={{
+    display: "flex", 
+    alignItems: "center", 
+    // margin: "0", 
+    height: "40px",
+    // position: "fixed",
+    // top: "0px",
+    // left: "0px",
+    // right: "0px"
+  }}>
     <Link to="/">
       <Menu.Item>
         <img src="/android-chrome-192x192.png" alt="Logo" />
@@ -15,7 +24,11 @@ const Navigation = ({signedIn, signOut}) => (
       {
         signedIn ? 
           <>
-          <Link to="/profile"><Menu.Item name="profile" /></Link>
+          <Link to="/profile">
+            <Menu.Item name="user circle">
+              <Icon name="user circle" />
+            </Menu.Item>
+          </Link>
           <Menu.Item name="sign out" onClick={() => signOut()} />
           </>
         : <Link to="/signin"><Menu.Item name="sign in" /></Link>

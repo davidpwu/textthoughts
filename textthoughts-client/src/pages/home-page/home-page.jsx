@@ -1,6 +1,6 @@
 import React from "react";
 
-import Message from "../..//components/message/message";
+import MessageList from "../../components/message-list/message-list";
 
 import {Container, Input, Icon} from "semantic-ui-react";
 
@@ -19,45 +19,61 @@ class HomePage extends React.Component {
     };
   }
 
+  handleTextSendClick = (event) => {
+    if (event.target.parentElement.children[0].value !== "") {
+      this.setState({
+        ...this.state, 
+        todaysMessages: 
+          [...this.state.todaysMessages, 
+          {text: event.target.parentElement.children[0].value, createdAt: new Date()}]
+      });
+      event.target.parentElement.children[0].value = "";
+    }
+  }
+
+  handleTextSendEnter = (event) => {
+    if (event.key === "Enter" && event.target.value !== "") {
+      this.setState({
+        ...this.state, 
+        todaysMessages: 
+          [...this.state.todaysMessages, 
+          {text: event.target.value, createdAt: new Date()}]
+      });
+      event.target.value = "";
+      // event.target.parentElement.previousSibling.scrollTop = event.target.parentElement.previousSibling.scrollHeight*2, 1000;
+    }
+  }
+
   render() {
     return (
-      <>
-        <Container style={{display: "flex", flexDirection: "column", height: 500, alignContent: "center"}}>
-          {
-            this.props.signedIn ?
-            <div>
-              <Message text={"I'm an example message"} createdAt={new Date()} />
-              <Message text={"I'm an example message"} createdAt={new Date()} />
-              <Message text={"I'm an example message"} createdAt={new Date()} />
-              {
-                this.state.todaysMessages.map(({text, createdAt}) => (
-                  <Message text={text} createdAt={createdAt} key={createdAt} />
-                ))
-              }
-
-              <Input 
-                fluid
-                icon={
-                  <Icon name="paper plane" inverted circular link 
-                    onClick={(event) => {
-                      this.setState({
-                        ...this.state, 
-                        todaysMessages: 
-                          [...this.state.todaysMessages, 
-                          {text: event.target.parentElement.children[0].value, createdAt: new Date()}]
-                      });
-                    }}
-                  />
-                }
-                onChange={(event) => this.setState({what: event.target.value})}
-                onSubmit={(event) => console.log(event)}
+      <div>
+        {
+          this.props.signedIn ?
+          <div>
+            <MessageList messages={this.state.todaysMessages} />
+            <Input
+              fluid
+              placeholder="Type a message..."
+              icon={<></>}
+              onKeyPress={(event) => {
+                this.handleTextSendEnter(event);
+              }}
+              style={{position: "fixed", bottom: "0px", left: "0px", right: "0px"}}
+            >
+              <input style={{borderRadius: "100px"}} />
+              <i className="inverted circular link paper plane icon" 
+                onClick={(event) => {
+                  this.handleTextSendClick(event);
+                }}
               />
-            </div>
-            :
+            </Input>
+          </div>
+          :
+          <div>
             <p>Sign the heck in</p>
-          }
-        </Container>
-      </>
+          </div>
+        }
+      </div>
     );
   }
 }

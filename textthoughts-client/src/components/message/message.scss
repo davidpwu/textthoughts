@@ -1,0 +1,22 @@
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 75%;
+
+  .sent-time {
+    margin: 0;
+  }
+
+  .message-text {
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin: 5px 10px;
+    display: inline-block;
+    color: white;
+    background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+    background-attachment: fixed;
+    position: relative;
+    overflow-wrap: anywhere;
+  }
+}

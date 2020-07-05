@@ -8,6 +8,15 @@ The unstructured journaling app.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Do List
+
+- Implement authentication ()
+- Implement datepicker for journal ()
+- Style messages ()
+- Allow ability to delete texts ()
+- Scroll to bottom of messages on send ()
+- More...
+
 ## Available Scripts
 
 In the project directory, you can run:
