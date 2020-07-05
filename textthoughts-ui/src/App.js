@@ -57,7 +57,7 @@ class App extends React.Component {
               this.state.signedIn ? (
                 <Redirect to="/" />
               ) : (
-                <SignInAndSignUpPage />
+                <SignInAndSignUpPage signIn={this.signIn} />
               )
             } 
           />

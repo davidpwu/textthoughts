@@ -1,8 +1,7 @@
 import React from "react";
 
 import MessageList from "../../components/message-list/message-list";
-
-import {Container, Input, Icon} from "semantic-ui-react";
+import MessageInput from "../../components/message-input/message-input";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class HomePage extends React.Component {
           {text: event.target.value, createdAt: new Date()}]
       });
       event.target.value = "";
-      // event.target.parentElement.previousSibling.scrollTop = event.target.parentElement.previousSibling.scrollHeight*2, 1000;
     }
   }
 
@@ -51,22 +49,10 @@ class HomePage extends React.Component {
           this.props.signedIn ?
           <div>
             <MessageList messages={this.state.todaysMessages} />
-            <Input
-              fluid
-              placeholder="Type a message..."
-              icon={<></>}
-              onKeyPress={(event) => {
-                this.handleTextSendEnter(event);
-              }}
-              style={{position: "fixed", bottom: "0px", left: "0px", right: "0px"}}
-            >
-              <input style={{borderRadius: "100px"}} />
-              <i className="inverted circular link paper plane icon" 
-                onClick={(event) => {
-                  this.handleTextSendClick(event);
-                }}
-              />
-            </Input>
+            <MessageInput 
+              handleTextSendEnter={this.handleTextSendEnter}  
+              handleTextSendClick={this.handleTextSendClick}
+            />
           </div>
           :
           <div>

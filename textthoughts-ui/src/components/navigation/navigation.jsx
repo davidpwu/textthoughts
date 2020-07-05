@@ -24,6 +24,9 @@ const Navigation = ({signedIn, signOut}) => (
       {
         signedIn ? 
           <>
+          <Menu.Item name="calendar">
+            <Icon name="calendar" />
+          </Menu.Item>
           <Link to="/profile">
             <Menu.Item name="user circle">
               <Icon name="user circle" />
