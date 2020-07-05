@@ -1,6 +1,6 @@
 {
-  "name": "textthoughts",
-  "description": "the unstructured journaling app",
+  "name": "TextThoughts",
+  "description": "The Unstructured Journaling App",
   "scripts": {
   },
   "env": {
