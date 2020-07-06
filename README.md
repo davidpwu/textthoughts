@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Scroll to bottom of messages on send (x)
 - Implement datepicker for journal (x)
 - Clean up sign in and sign up page (x)
-- Connect to DB
+- Connect to DB ()
 - Implement authentication ()
 - Allow ability to delete texts ()
 - More...

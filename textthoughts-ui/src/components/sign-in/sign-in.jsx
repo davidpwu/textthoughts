@@ -1,5 +1,6 @@
 import React from "react";
 
+import {Link} from "react-router-dom";
 import {Button, Form} from "semantic-ui-react";
 
 // import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
@@ -64,7 +65,7 @@ class SignIn extends React.Component {
           <Button
             type="submit"
             color="blue"
-            onClick={() => fetch("http://localhost:3001/auth/google")}
+            href="http://localhost:3001/auth/google"
           >
             Sign In with Google
           </Button>

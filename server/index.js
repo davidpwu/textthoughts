@@ -6,7 +6,6 @@ const path = require("path");
 const cors = require("cors");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-google").Strategy;
 
 // MongoDB Setup
 const mongoUri = process.env.DB_URI;
@@ -23,32 +22,22 @@ mongoose.connection.on("error", (err) => {
 });
 
 // Passport Setup
-passport.use(new LocalStrategy(
-  (username, password, done) => {
-    User.findOne({username: username}, (err, user) => {
-      if (err) { 
-        return done(err); 
-      }
-      if (!user) {
-        return done(null, false, {message: "Incorrect username."});
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, {message: "Incorrect password."});
-      }
-      return done(null, user);
-    });
-  }
-));
-passport.use(new GoogleStrategy({
-    returnURL: "http://localhost:3001/auth/google/return/",
-    realm: "http://localhost:3001/"
-  },
-  (identifier, done) => {
-    User.findByOpenID({ openId: identifier }, (err, user) => {
-      return done(err, user);
-    });
-  }
-));
+// passport.use(new LocalStrategy(
+//   (username, password, done) => {
+//     User.findOne({username: username}, (err, user) => {
+//       if (err) { 
+//         return done(err); 
+//       }
+//       if (!user) {
+//         return done(null, false, {message: "Incorrect username."});
+//       }
+//       if (!user.validPassword(password)) {
+//         return done(null, false, {message: "Incorrect password."});
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 const port = process.env.PORT || 3001;
 const dev = process.env.NODE_ENV !== "production";
@@ -87,37 +76,25 @@ const handleSignIn = () => (req, res) => {
   //   .catch(err => res.status(400).json('wrong credentials'))
 }
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect("/signin");
+}
+
 // Priority serve any static files
 app.use(express.static(path.resolve(__dirname, "../textthoughts-ui/build")));
 
 // Answer API requests
-// app.get("/api", function (req, res) {
-//   res.set("Content-Type", "application/json");
-//   res.send('{"message":"Hello from the custom server!"}');
-// });
-
-app.get("/hobo", (req, res) => { 
-  res.send({good: "stuff"});
+app.get("/api", (req, res) => {
+  res.set("Content-Type", "application/json");
+  res.send('{"message":"Hello from the custom server!"}');
 });
 
-app.post("/signin", handleSignIn());
+// app.get("/hobo", (req, res) => { 
+//   res.send({good: "stuff"});
+// });
 
-app.get('/auth/google',
-  passport.authenticate('google'),
-  (req, res) => {
-    // The request will be redirected to Google for authentication, so
-    // this function will not be called.
-  }
-);
-
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/signin' }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  }
-);
-
+// app.post("/signin", handleSignIn());
 
 // Test Passport
 // app.post("/login",
@@ -125,6 +102,11 @@ app.get('/auth/google/callback',
 //                                    failureRedirect: "/login",
 //                                    failureFlash: true })
 // );
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
 
 // All remaining requests return the React app, so it can handle routing
 app.get("*", function(req, res) {
