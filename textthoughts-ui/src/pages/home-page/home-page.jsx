@@ -2,6 +2,7 @@ import React from "react";
 
 import MessageList from "../../components/message-list/message-list";
 import MessageInput from "../../components/message-input/message-input";
+import {Button} from "semantic-ui-react";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -9,11 +10,9 @@ class HomePage extends React.Component {
     
     this.state = {
       todaysMessages: [
-        {text: "This is message one", createdAt: new Date()},
-        {text: "This is message two", createdAt: new Date()},
-        {text: "This is message three", createdAt: new Date()},
-        {text: "This is message four", createdAt: new Date()},
-        {text: "This is message five", createdAt: new Date()}
+        {text: "This is message one from today", createdAt: new Date()},
+        {text: "This is message two from today", createdAt: new Date()},
+        {text: "This is message three from today", createdAt: new Date()}
       ]
     };
   }
@@ -42,17 +41,54 @@ class HomePage extends React.Component {
     }
   }
 
+  checkDateEquality(d1, d2) {
+    if (d1.getMonth() === d2.getMonth() 
+      && d1.getDate() === d2.getDate() 
+      && d1.getFullYear() === d2.getFullYear()
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     return (
       <div>
         {
           this.props.signedIn ?
           <div>
-            <MessageList messages={this.state.todaysMessages} />
-            <MessageInput 
-              handleTextSendEnter={this.handleTextSendEnter}  
-              handleTextSendClick={this.handleTextSendClick}
-            />
+            {
+              this.checkDateEquality(this.props.selectedDate, new Date()) 
+              ? 
+              <MessageList messages={this.state.todaysMessages} />
+              : 
+              <MessageList messages={null} />
+            }
+            {
+              this.checkDateEquality(this.props.selectedDate, new Date()) 
+              ? 
+              <MessageInput 
+                handleTextSendEnter={this.handleTextSendEnter}  
+                handleTextSendClick={this.handleTextSendClick}
+              />
+              : 
+              <Button 
+                fluid
+                color="blue" 
+                onClick={() => this.props.setDate(new Date())}
+                style={{
+                  position: "fixed", 
+                  bottom: "0px", 
+                  left: "0px", 
+                  right: "0px", 
+                  height: "37.67px",
+                  borderRadius: "100px"
+                }}
+              >
+                Jump to Today to Send Texts
+              </Button>
+            }
           </div>
           :
           <div>

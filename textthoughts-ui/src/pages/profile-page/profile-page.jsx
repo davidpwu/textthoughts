@@ -1,12 +1,17 @@
 import React from "react";
 
-import {Container} from "semantic-ui-react";
+import {Container, Button} from "semantic-ui-react";
 
-const ProfilePage = () => (
+const ProfilePage = ({signOut}) => (
   <>
     <Container>
-      <h1>Welcome to the Profile page</h1>
-      <h2>Allow exporting data and what not here.</h2>
+      <h1>Profile</h1>
+      <Button onClick={() => signOut()}>Sign Out</Button>
+      <hr />
+      <Button>Export Data (Not implemented)</Button>
+      <hr />
+      <Button color="yellow">Edit Account (Not implemented)</Button>
+      <Button color="red">Delete Account (Not implemented)</Button>
     </Container>
   </>
 )

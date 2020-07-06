@@ -32,11 +32,10 @@ const MessageList = ({messages}) => {
           alignItems: "flex-end"
         }}
       >
-        <Message text={"I'm an example message"} createdAt={new Date()} />
-        <Message text={"I'm an example message"} createdAt={new Date()} />
-        <Message text={"I'm an example message"} createdAt={new Date()} />
+        <Message text={"I'm an example message in message list"} createdAt={new Date()} />
+        <Message text={"I'm the second example message in message list"} createdAt={new Date()} />
         {
-          messages.map(({text, createdAt}) => (
+          messages?.map(({text, createdAt}) => (
             <Message text={text} createdAt={createdAt} key={Math.random()} />
           ))
         }

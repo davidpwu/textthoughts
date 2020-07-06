@@ -1,13 +1,8 @@
 import React from "react";
 
-import FormInput from "../form-input/form-input";
-import CustomButton from "../custom-button/custom-button";
-// import {Input as FormInput} from "semantic-ui-react";
-// import {Button as CustomButton} from "semantic-ui-react";
+import {Button, Form} from "semantic-ui-react";
 
 // import {auth, createUserProfileDocument} from "../../firebase/firebase.utils";
-
-import "./sign-up.styles.scss";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -19,11 +14,6 @@ class SignUp extends React.Component {
       password: "",
       confirmPassword: ""
     }
-  }
-
-  handleChange = (event) => {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
   }
 
   // handleSubmit = async (event) => {
@@ -49,41 +39,45 @@ class SignUp extends React.Component {
         <h2 className="title">I don't have an account</h2>
         <span>Sign up with your email and password</span>
 
-        <form onSubmit={this.handleSubmit}>
-          <FormInput 
-            type="text" 
-            name="displayName" 
-            value={this.state.displayName} 
-            handleChange={this.handleChange} 
-            label="Display Name"
-            required 
-          />
-          <FormInput 
-            type="email" 
-            name="email" 
-            value={this.state.email} 
-            handleChange={this.handleChange} 
-            label="Email"
-            required 
-          />
-          <FormInput 
-            type="password" 
-            name="password" 
-            value={this.state.password} 
-            handleChange={this.handleChange}
-            label="Password"
-            required 
-          />
-          <FormInput 
-            type="password" 
-            name="confirmPassword" 
-            value={this.state.confirmPassword} 
-            handleChange={this.handleChange}
-            label="Confirm Password"
-            required 
-          />
-          <CustomButton type="submit">Sign Up</CustomButton>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Display Name</label>
+            <input 
+              type="text" 
+              name="displayName" 
+              placeholder="Display Name"
+              required 
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Email"
+              required 
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Password"
+              required 
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Confirm Password</label>
+            <input 
+              type="password" 
+              name="confirmPassword" 
+              placeholder="Confirm Password"
+              required 
+            />
+          </Form.Field>
+          <Button type="submit">Sign Up</Button>
+        </Form>
       </div>
     )
   }

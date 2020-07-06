@@ -1,13 +1,8 @@
 import React from "react";
 
-import FormInput from "../form-input/form-input";
-import CustomButton from "../custom-button/custom-button";
-// import {Input as FormInput} from "semantic-ui-react";
-// import {Button as CustomButton} from "semantic-ui-react";
+import {Button, Form} from "semantic-ui-react";
 
 // import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
-
-import "./sign-in.styles.scss";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -41,30 +36,27 @@ class SignIn extends React.Component {
         <h2 className="title">I already have an account</h2>
         <span>Sign in with your email and password</span>
 
-        <form onSubmit={this.handleSubmit}>
-          <FormInput 
-            type="email" 
-            name="email" 
-            value={this.state.email} 
-            handleChange={this.handleChange} 
-            label="Email"
-            required 
-          />
-          <FormInput 
-            type="password" 
-            name="password" 
-            value={this.state.password} 
-            handleChange={this.handleChange}
-            label="Password"
-            required 
-          />
-          <div className="buttons">
-            <CustomButton type="submit">Sign in</CustomButton>
-            {/* <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
-              Sign in with Google
-            </CustomButton> */}
-          </div>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Email"
+              required 
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Password"
+              required 
+            />
+          </Form.Field>
+          <Button type="submit">Sign In</Button>
+        </Form>
       </div>
     )
   }

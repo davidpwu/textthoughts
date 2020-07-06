@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 
 import SignIn from "../../components/sign-in/sign-in";
 import SignUp from "../../components/sign-up/sign-up";
+
+import {Button} from "semantic-ui-react";
 
 import "./sign-in-and-sign-up-page.styles.scss";
 
@@ -30,7 +32,7 @@ const SignInAndSignUpPage = ({signIn}) => {
 
   return (
     <div className="sign-in-and-sign-up-page">
-      <button onClick={() => onSubmitSignIn("a@gmail.com", "apass", signIn)}>Sign In A</button>
+      <Button onClick={() => onSubmitSignIn("a@gmail.com", "apass", signIn)}>Sign In A</Button>
       <SignIn />
       <SignUp />
     </div>
