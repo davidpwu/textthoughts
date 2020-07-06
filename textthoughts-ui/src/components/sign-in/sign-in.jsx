@@ -55,7 +55,19 @@ class SignIn extends React.Component {
               required 
             />
           </Form.Field>
-          <Button type="submit">Sign In</Button>
+          <Button 
+            type="submit" 
+            style={{backgroundColor: "rgb(255, 190, 87)", color: "white"}}
+          >
+            Sign In
+          </Button>
+          <Button
+            type="submit"
+            color="blue"
+            onClick={() => fetch("http://localhost:3001/auth/google")}
+          >
+            Sign In with Google
+          </Button>
         </Form>
       </div>
     )

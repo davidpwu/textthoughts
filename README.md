@@ -2,7 +2,7 @@
 
 ## Details
 
-<img src="https://raw.githubusercontent.com/davidpwu/textthoughts/master/textthoughts-client/public/android-chrome-512x512.png" alt="" width="400"/>
+<img src="https://raw.githubusercontent.com/davidpwu/textthoughts/master/textthoughts-ui/public/android-chrome-512x512.png" alt="" width="400"/>
 
 The unstructured journaling app.
 
@@ -10,11 +10,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To Do List
 
+- Style messages (x)
+- Scroll to bottom of messages on send (x)
+- Implement datepicker for journal (x)
+- Clean up sign in and sign up page (x)
+- Connect to DB
 - Implement authentication ()
-- Implement datepicker for journal ()
-- Style messages ()
 - Allow ability to delete texts ()
-- Scroll to bottom of messages on send ()
 - More...
 
 ## Available Scripts

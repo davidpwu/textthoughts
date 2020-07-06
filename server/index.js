@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require("passport-google").Strategy;
 
 // MongoDB Setup
 const mongoUri = process.env.DB_URI;
@@ -19,6 +22,34 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connecting to MongoDB", err);
 });
 
+// Passport Setup
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    User.findOne({username: username}, (err, user) => {
+      if (err) { 
+        return done(err); 
+      }
+      if (!user) {
+        return done(null, false, {message: "Incorrect username."});
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, {message: "Incorrect password."});
+      }
+      return done(null, user);
+    });
+  }
+));
+passport.use(new GoogleStrategy({
+    returnURL: "http://localhost:3001/auth/google/return/",
+    realm: "http://localhost:3001/"
+  },
+  (identifier, done) => {
+    User.findByOpenID({ openId: identifier }, (err, user) => {
+      return done(err, user);
+    });
+  }
+));
+
 const port = process.env.PORT || 3001;
 const dev = process.env.NODE_ENV !== "production";
 
@@ -26,6 +57,11 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
+
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
 
 const handleSignIn = () => (req, res) => {
   const {email, password} = req.body;
@@ -66,15 +102,29 @@ app.get("/hobo", (req, res) => {
 
 app.post("/signin", handleSignIn());
 
-// Test Passport
-app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/users/' + req.user.username);
+app.get('/auth/google',
+  passport.authenticate('google'),
+  (req, res) => {
+    // The request will be redirected to Google for authentication, so
+    // this function will not be called.
   }
 );
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/signin' }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  }
+);
+
+
+// Test Passport
+// app.post("/login",
+//   passport.authenticate("local", { successRedirect: "/",
+//                                    failureRedirect: "/login",
+//                                    failureFlash: true })
+// );
 
 // All remaining requests return the React app, so it can handle routing
 app.get("*", function(req, res) {

@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Icon, Popup, Button} from "semantic-ui-react";
+
 import "./message.scss";
 
 const Message = ({text, createdAt}) => {
@@ -12,6 +14,15 @@ const Message = ({text, createdAt}) => {
 
   return (
     <div className="message">
+      
+      <Popup
+        trigger={
+          <Icon name="ellipsis vertical" style={{cursor: "pointer"}} />
+        }
+        content={<Button color="red" icon="trash alternate" content="Delete (Not implemented)" />}
+        on='click'
+        position='top right'
+      />
       <p className="sent-time">Sent {displayCreatedAtHour}:{displayCreatedAtMinute}</p>
       <p className="message-text">{text}</p>
     </div>

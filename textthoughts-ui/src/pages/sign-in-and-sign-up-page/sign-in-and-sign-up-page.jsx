@@ -36,7 +36,7 @@ const SignInAndSignUpPage = ({signIn}) => {
         onClick={
           () => onSubmitSignIn("a@gmail.com", "apass", signIn)
         }
-        style={{display: "absolute"}}
+        style={{backgroundColor: "rgb(255, 190, 87)", color: "white"}}
       >
         Sign In A
       </Button>

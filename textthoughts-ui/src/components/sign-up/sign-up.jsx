@@ -76,7 +76,12 @@ class SignUp extends React.Component {
               required 
             />
           </Form.Field>
-          <Button type="submit">Sign Up</Button>
+          <Button 
+            type="submit" 
+            style={{backgroundColor: "rgb(255, 190, 87)", color: "white"}}
+          >
+            Sign Up
+          </Button>
         </Form>
       </div>
     )
