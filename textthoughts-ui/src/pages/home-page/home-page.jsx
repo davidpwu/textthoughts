@@ -2,6 +2,7 @@ import React from "react";
 
 import MessageList from "../../components/message-list/message-list";
 import MessageInput from "../../components/message-input/message-input";
+import Splash from "../../components/splash/splash";
 import {Button} from "semantic-ui-react";
 
 class HomePage extends React.Component {
@@ -54,46 +55,43 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="home-page">
         {
           this.props.signedIn ?
           <div>
             {
               this.checkDateEquality(this.props.selectedDate, new Date()) 
               ? 
-              <MessageList messages={this.state.todaysMessages} />
+              <>
+                <MessageList messages={this.state.todaysMessages} />
+                <MessageInput 
+                  handleTextSendEnter={this.handleTextSendEnter}  
+                  handleTextSendClick={this.handleTextSendClick}
+                />
+              </>
               : 
-              <MessageList messages={null} />
-            }
-            {
-              this.checkDateEquality(this.props.selectedDate, new Date()) 
-              ? 
-              <MessageInput 
-                handleTextSendEnter={this.handleTextSendEnter}  
-                handleTextSendClick={this.handleTextSendClick}
-              />
-              : 
-              <Button 
-                fluid
-                color="blue" 
-                onClick={() => this.props.setDate(new Date())}
-                style={{
-                  position: "fixed", 
-                  bottom: "0px", 
-                  left: "0px", 
-                  right: "0px", 
-                  height: "37.67px",
-                  borderRadius: "100px"
-                }}
-              >
-                Jump to Today to Send Texts
-              </Button>
+              <>
+                <MessageList messages={null} />
+                <Button 
+                  fluid
+                  color="blue" 
+                  onClick={() => this.props.setDate(new Date())}
+                  style={{
+                    position: "fixed", 
+                    bottom: "0px", 
+                    left: "0px", 
+                    right: "0px", 
+                    height: "37.67px",
+                    borderRadius: "100px"
+                  }}
+                >
+                  Jump to Today to Send Texts
+                </Button>
+              </>
             }
           </div>
           :
-          <div>
-            <p>Sign the heck in</p>
-          </div>
+          <Splash />
         }
       </div>
     );

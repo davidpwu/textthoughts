@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Container, Header, Step, Icon} from "semantic-ui-react";
+import {Container, Header} from "semantic-ui-react";
 
 // fetch("http://localhost:3001/hobo")
 //     .then((res) => res.json())

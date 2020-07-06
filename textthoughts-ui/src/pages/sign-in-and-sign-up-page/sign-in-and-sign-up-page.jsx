@@ -32,7 +32,14 @@ const SignInAndSignUpPage = ({signIn}) => {
 
   return (
     <div className="sign-in-and-sign-up-page">
-      <Button onClick={() => onSubmitSignIn("a@gmail.com", "apass", signIn)}>Sign In A</Button>
+      <Button 
+        onClick={
+          () => onSubmitSignIn("a@gmail.com", "apass", signIn)
+        }
+        style={{display: "absolute"}}
+      >
+        Sign In A
+      </Button>
       <SignIn />
       <SignUp />
     </div>

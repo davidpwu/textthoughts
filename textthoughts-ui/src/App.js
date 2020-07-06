@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      signedIn: true,
+      signedIn: false,
       selectedDate: new Date()
     };
   }
@@ -43,15 +43,15 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" 
             render={() => (
-              this.state.signedIn ? (
+              // this.state.signedIn ? (
                 <HomePage 
                   signedIn={this.state.signedIn} 
                   selectedDate={this.state.selectedDate} 
                   setDate={this.setDate}
                 />
-              ) : (
-                <Redirect to="/signin" />
-              )
+              // ) : (
+              //   <Redirect to="/signin" />
+              // )
             )}
           />
           <Route exact path="/about" component={AboutPage} />
