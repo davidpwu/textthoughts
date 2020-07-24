@@ -90,16 +90,10 @@ app.get("/api", (req, res) => {
   res.send('{"message":"Hello from the custom server!"}');
 });
 
-// app.get("/hobo", (req, res) => { 
-//   res.send({good: "stuff"});
-// });
-
-// app.post("/signin", handleSignIn());
-
-// Test Passport
-// app.post("/login",
+app.post("/signin", handleSignIn());
+// app.post("/signin",
 //   passport.authenticate("local", { successRedirect: "/",
-//                                    failureRedirect: "/login",
+//                                    failureRedirect: "/signin",
 //                                    failureFlash: true })
 // );
 
