@@ -8,6 +8,10 @@
     "build": "cd textthoughts-ui && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "textthoughts-ui/node_modules"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
