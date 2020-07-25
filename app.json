@@ -1,21 +1,21 @@
-{
-  "name": "TextThoughts",
-  "description": "The Unstructured Journaling App",
-  "scripts": {
-  },
-  "env": {
-  },
-  "formation": {
-    "web": {
-      "quantity": 1
-    }
-  },
-  "addons": [
+// {
+//   "name": "TextThoughts",
+//   "description": "The Unstructured Journaling App",
+//   "scripts": {
+//   },
+//   "env": {
+//   },
+//   "formation": {
+//     "web": {
+//       "quantity": 1
+//     }
+//   },
+//   "addons": [
 
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
-}
+//   ],
+//   "buildpacks": [
+//     {
+//       "url": "heroku/nodejs"
+//     }
+//   ]
+// }
