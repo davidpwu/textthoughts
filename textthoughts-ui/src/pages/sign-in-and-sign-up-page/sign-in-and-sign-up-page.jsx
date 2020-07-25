@@ -8,7 +8,7 @@ import {Button} from "semantic-ui-react";
 import "./sign-in-and-sign-up-page.styles.scss";
 
 const onSubmitSignIn = (signInEmail, signInPassword, signIn) => {
-  fetch("http://localhost:3001/signin", {
+  fetch("/signin", {
     method: "post",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
