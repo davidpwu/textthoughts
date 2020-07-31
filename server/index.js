@@ -57,7 +57,9 @@ const handleSignIn = () => (req, res) => {
   if (!email || !password) {
     return res.status(400).json("Incorrect form submission");
   }
-  res.send({email: password});
+  res.json(req.body);
+  // res.send({email: password});
+
   // db.select('email', 'hash').from('login')
   //   .where('email', '=', email)
   //   .then(data => {
@@ -76,19 +78,13 @@ const handleSignIn = () => (req, res) => {
   //   .catch(err => res.status(400).json('wrong credentials'))
 }
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect("/signin");
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.redirect("/signin");
+// }
 
 // Priority serve any static files
 app.use(express.static(path.resolve(__dirname, "../textthoughts-ui/build")));
-
-// Answer API requests
-app.get("/api", (req, res) => {
-  res.set("Content-Type", "application/json");
-  res.send('{"message":"Hello from the custom server!"}');
-});
 
 app.post("/signin", handleSignIn());
 // app.post("/signin",
@@ -97,13 +93,13 @@ app.post("/signin", handleSignIn());
 //                                    failureFlash: true })
 // );
 
-app.get("/logout", function(req, res){
+app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
 // All remaining requests return the React app, so it can handle routing
-app.get("*", function(req, res) {
+app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../textthoughts-ui/build", "index.html"));
 });
 

@@ -3,12 +3,19 @@ import React from "react";
 import SignIn from "../../components/sign-in/sign-in";
 import SignUp from "../../components/sign-up/sign-up";
 
-import {Button} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 import "./sign-in-and-sign-up-page.styles.scss";
 
 const onSubmitSignIn = (signInEmail, signInPassword, signIn) => {
-  fetch("/signin", {
+  // If production, use relative link
+  let fetchLink = "/signin"
+  // If development, use localhost link instead of relative link
+  if (process.env.NODE_ENV !== "production") {
+    fetchLink = "http://localhost:3001/signin";
+  }
+  
+  fetch(fetchLink, {
     method: "post",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -32,16 +39,22 @@ const SignInAndSignUpPage = ({signIn}) => {
 
   return (
     <div className="sign-in-and-sign-up-page">
-      <Button 
+      <Link
+        className="sign-in-example"
         onClick={
-          () => onSubmitSignIn("a@gmail.com", "apass", signIn)
+          () => onSubmitSignIn("example@example.com", "examplepass", signIn)
         }
-        style={{backgroundColor: "rgb(255, 190, 87)", color: "white"}}
+        style={{
+          display: "flex",
+          justifyContent: "center"
+        }}
       >
-        Sign In A
-      </Button>
-      <SignIn />
-      <SignUp />
+        Sign Into Example Account
+      </Link>
+      <div className="forms">
+        <SignIn />
+        <SignUp />
+      </div>
     </div>
   );
 }

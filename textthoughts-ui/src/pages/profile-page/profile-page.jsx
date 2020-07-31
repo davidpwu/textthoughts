@@ -10,7 +10,7 @@ const ProfilePage = ({signOut}) => (
       <hr />
       <Button>Export Data (Not implemented)</Button>
       <hr />
-      <Button color="yellow">Edit Account (Not implemented)</Button>
+      <Button color="yellow" style={{marginBottom: "5px"}}>Edit Account (Not implemented)</Button>
       <Button color="red">Delete Account (Not implemented)</Button>
     </Container>
   </>

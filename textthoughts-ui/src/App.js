@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   setDate = (newDate) => {
-    this.setState({selectedDate: newDate})
+    this.setState({selectedDate: newDate});
   }
 
   render() {
@@ -73,7 +73,7 @@ class App extends React.Component {
               ) : (
                 <SignInAndSignUpPage signIn={this.signIn} />
               )
-            } 
+            }
           />
         </Switch>
       </>

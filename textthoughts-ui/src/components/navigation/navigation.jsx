@@ -24,7 +24,11 @@ const Navigation = ({signedIn, selectedDate, setDate}) => (
           <>
             <DatePicker 
               selected={selectedDate} 
-              onSelect={(newDate) => setDate(newDate)} 
+              onSelect={
+                (newDate) => {
+                  setDate(newDate);
+                }
+              } 
               customInput={
                 <Menu.Item name="calendar">
                   <Icon name="calendar" />
