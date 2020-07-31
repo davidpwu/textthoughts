@@ -14,9 +14,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Scroll to bottom of messages on send (x)
 - Implement datepicker for journal (x)
 - Clean up sign in and sign up page (x)
+- Deploy (x)
+- Fix user experience for sending messages by icon press ()
 - Connect to DB ()
 - Implement authentication ()
 - Allow ability to delete texts ()
+- Add animation on button press ()
+- Fix CircleCI ()
+- Remake app on React Native ()
 - More...
 
 ## Available Scripts
