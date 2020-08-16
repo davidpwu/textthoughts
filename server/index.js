@@ -5,7 +5,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const LocalStrategy = require("passport-local");
+const passportLocalMongoose = require("passport-local-mongoose");
+const expressSession = require("express-session");
+
+const User = require("./models/user");
 
 // MongoDB Setup
 const mongoUri = process.env.DB_URI;
@@ -49,33 +53,37 @@ app.use(cors());
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
+app.use(expressSession({
+  secret: process.env.SESSION_KEY,
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+const handleSignUp = () => (req, res) => {
+  const {username, password} = req.body;
+  User.register(new User({username: username}), password, (err, user) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(user);
+      passport.authenticate("local")(req, res, () => {
+        res.redirect("/secret");
+      });
+    }
+  });
+}
 
 const handleSignIn = () => (req, res) => {
-  const {email, password} = req.body;
-  if (!email || !password) {
-    return res.status(400).json("Incorrect form submission");
-  }
-  res.json(req.body);
+  // const {email, password} = req.body;
+  // if (!email || !password) {
+  //   return res.status(400).json("Incorrect form submission");
+  // }
+  // res.json(req.body);
   // res.send({email: password});
-
-  // db.select('email', 'hash').from('login')
-  //   .where('email', '=', email)
-  //   .then(data => {
-  //     const isValid = bcrypt.compareSync(password, data[0].hash);
-  //     if (isValid) {
-  //       return db.select('*').from('users')
-  //         .where('email', '=', email)
-  //         .then(user => {
-  //           res.json(user[0])
-  //         })
-  //         .catch(err => res.status(400).json('unable to get user'))
-  //     } else {
-  //       res.status(400).json('wrong credentials')
-  //     }
-  //   })
-  //   .catch(err => res.status(400).json('wrong credentials'))
 }
 
 // function ensureAuthenticated(req, res, next) {
@@ -85,6 +93,8 @@ const handleSignIn = () => (req, res) => {
 
 // Priority serve any static files
 app.use(express.static(path.resolve(__dirname, "../textthoughts-ui/build")));
+
+app.post("/signup", handleSignUp());
 
 app.post("/signin", handleSignIn());
 // app.post("/signin",

@@ -16,22 +16,22 @@ class SignUp extends React.Component {
     }
   }
 
-  // handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const {displayName, email, password, confirmPassword} = this.state;
-  //   if (password !== confirmPassword) {
-  //     alert("Passwords don't match");
-  //     return;
-  //   } else {
-  //     try {
-  //       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-  //       await createUserProfileDocument(user, {displayName});
-  //       this.setState({displayName: "", email: "", password: "", confirmPassword: ""});
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // }
+  handleSubmit = async (event) => {
+    // event.preventDefault();
+    // const {displayName, email, password, confirmPassword} = this.state;
+    // if (password !== confirmPassword) {
+    //   alert("Passwords don't match");
+    //   return;
+    // } else {
+    //   try {
+    //     const {user} = await auth.createUserWithEmailAndPassword(email, password);
+    //     await createUserProfileDocument(user, {displayName});
+    //     this.setState({displayName: "", email: "", password: "", confirmPassword: ""});
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+  }
 
   render() {
     return(
@@ -77,7 +77,7 @@ class SignUp extends React.Component {
             />
           </Form.Field>
           <Button type="submit">
-            Sign Up
+            Sign Up (Not implemented)
           </Button>
         </Form>
       </div>

@@ -56,10 +56,10 @@ class SignIn extends React.Component {
             />
           </Form.Field>
           <Button type="submit">
-            Sign In
+            Sign In (Not implemented)
           </Button>
           <Button type="submit" color="blue">
-            Sign In with Google
+            Sign In with Google (Not implemented)
           </Button>
         </Form>
       </div>

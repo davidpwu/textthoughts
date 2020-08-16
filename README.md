@@ -19,6 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Connect to DB ()
 - Implement authentication ()
 - Allow ability to delete texts ()
+- Search functionality ()
 - Add animation on button press ()
 - Fix CircleCI ()
 - Remake app on React Native ()
