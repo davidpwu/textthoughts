@@ -53,15 +53,15 @@ app.use(cors());
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
-app.use(expressSession({
-  secret: process.env.SESSION_KEY,
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// app.use(expressSession({
+//   secret: process.env.SESSION_KEY,
+//   resave: false,
+//   saveUninitialized: false
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 const handleSignUp = () => (req, res) => {
   const {username, password} = req.body;
