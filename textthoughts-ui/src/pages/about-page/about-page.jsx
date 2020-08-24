@@ -46,9 +46,9 @@ const AboutPage = () => {
           <li><strong>Badass</strong> - This is a badass app</li>
         </ul>
 
-        <h2>Disclaimer</h2>
+        {/* <h2>Disclaimer</h2>
         <p>Note that all sent texts attached to your account will be stored in the TextThoughts database. This means that in theory, TextThoughts can access your texts. Given that this is a personal journaling app and not a social media platform, there is zero reason to access this data for censorship or otherwise. But this is the state of data storage. The intent is to add a feature to allow you to export all your texts if you so choose. Perhaps there is some way to allow users to provide a database, but that's a discussion for later.</p>
-        <p></p>
+        <p></p> */}
 
       </Container>
     </>
