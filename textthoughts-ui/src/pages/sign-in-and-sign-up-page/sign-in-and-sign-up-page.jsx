@@ -24,7 +24,7 @@ const onSubmitSignIn = (signInEmail, signInPassword, signIn) => {
     })
   })
     .then(res => res.json())
-    .then(data => {console.log(data); signIn()})
+    .then(data => {signIn()})
     // .then(user => {
       // if (user.id) {
         // this.props.loadUser(user)
